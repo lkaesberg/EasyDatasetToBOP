@@ -2,10 +2,11 @@ import json
 from pathlib import Path
 import pymeshlab
 
-from bop_dataset_utils import inout, misc
+from easydatasettobop.bop_dataset_utils import misc
+from easydatasettobop.bop_dataset_utils import inout
 
 
-def convert_models(root_folder: Path, destination_folder: Path, generate: bool):
+def convert_models(root_folder: Path, destination_folder: Path, ending: str):
     root_folder = root_folder / "models"
     destination_folder = destination_folder / "models"
     destination_folder.mkdir(exist_ok=True)
@@ -13,13 +14,14 @@ def convert_models(root_folder: Path, destination_folder: Path, generate: bool):
     convert_info = {}
     model_info = {}
     for file in root_folder.iterdir():
-        if file.is_file() and file.suffix.lower() in ([".gltf"] if generate else [".ply"]):
+        if file.is_file() and file.suffix.lower() in [ending]:
             ms = pymeshlab.MeshSet()
-            if generate:
+            if ending == ".gltf":
                 ms.load_new_mesh(file.as_posix(), load_in_a_single_layer=True)
             else:
                 ms.load_new_mesh(file.as_posix())
             ms.meshing_poly_to_tri()
+            ms.compute_texcoord_by_function_per_vertex()
             name = f"obj_{count:06d}"
             save_file = destination_folder / f"{name}.ply"
             ms.save_current_mesh(save_file.as_posix())
@@ -40,5 +42,5 @@ def convert_models(root_folder: Path, destination_folder: Path, generate: bool):
                                       "symmetries_discrete": [],
                                       "symmetries_continuous": []}
             count += 1
-    (destination_folder / "model_info.json").write_text(json.dumps(model_info))
+    (destination_folder / "models_info.json").write_text(json.dumps(model_info))
     return convert_info

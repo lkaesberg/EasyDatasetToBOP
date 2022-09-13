@@ -12,7 +12,7 @@ import subprocess
 import numpy as np
 from scipy.spatial import distance
 
-from bop_dataset_utils import transform
+from easydatasettobop.bop_dataset_utils import transform
 
 
 def log(s):
