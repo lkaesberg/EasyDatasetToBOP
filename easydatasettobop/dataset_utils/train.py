@@ -94,7 +94,7 @@ def create_scene_gt(root_folder: Path, save_folder: Path, data_order, conversion
             else:
                 for object_name in conversion_info:
                     if object_name in object_data["name"]:
-                        object_id = object_name
+                        object_id = conversion_info[object_name][0]
                         break
             objects.append({"cam_R_m2c": rotation, "cam_t_m2c": translation, "obj_id": object_id})
         content[str(count)] = objects
