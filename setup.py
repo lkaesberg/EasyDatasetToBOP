@@ -19,5 +19,5 @@ setuptools.setup(
     python_requires='>=3.9',  # Minimum version requirement of the package
     py_modules=["easydatasettobop"],  # Name of the python package
     package_dir={'': '.'},  # Directory of the source code of the package
-    install_requires=["pymeshlab"]  # Install other dependencies if any
+    install_requires=["pymeshlab", "imageio", "pypng", "opencv-python"]  # Install other dependencies if any
 )
