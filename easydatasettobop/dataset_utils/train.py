@@ -5,6 +5,7 @@ from pathlib import Path
 import cv2
 import numpy as np
 from scipy.spatial.transform import Rotation
+from tqdm import tqdm
 
 
 def copy_pictures(root_folder: Path, save_folder: Path, data_order):
@@ -16,7 +17,7 @@ def copy_pictures(root_folder: Path, save_folder: Path, data_order):
 
 def create_mask_images(root_folder: Path, save_folder: Path, data_order):
     count = 1
-    for number in data_order:
+    for number in tqdm(data_order):
         img = cv2.imread((root_folder / f"segmentation{number}.png").as_posix())
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         img_number = 0
@@ -69,7 +70,7 @@ def get_translation_rotation(data):
 def create_scene_camera(root_folder: Path, save_folder: Path, data_order):
     count = 1
     content = {}
-    for number in data_order:
+    for number in tqdm(data_order):
         data = json.loads((root_folder / f"data{number}.json").read_text())
         cam_info = data["cameraInformation"]
         translation, rotation = get_translation_rotation(cam_info)
@@ -136,7 +137,7 @@ def create_train(root_folder: Path, save_folder: Path, conversion_info):
     rgb_folder.mkdir(exist_ok=True)
     mask_folder.mkdir(exist_ok=True)
     data_order = []
-    for file in root_folder.iterdir():
+    for file in sorted(root_folder.iterdir()):
         if file.is_file() and file.suffix == ".json":
             data_order.append(file.stem.removeprefix("data"))
     copy_pictures(root_folder, rgb_folder, data_order)

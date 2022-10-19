@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from tqdm import tqdm
 
 
 def create_camera_file(cx, cy, depth_scale, fx, fy, height, width, home_path: Path):
@@ -10,7 +11,7 @@ def create_camera_file(cx, cy, depth_scale, fx, fy, height, width, home_path: Pa
 
 
 def create_camera_info(root_folder: Path, save_folder: Path):
-    for file in root_folder.iterdir():
+    for file in tqdm(sorted(root_folder.iterdir())):
         if file.is_file() and file.suffix == ".json":
             data = json.loads(file.read_text())
             camera_info = data["cameraInformation"]

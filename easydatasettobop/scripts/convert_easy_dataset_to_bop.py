@@ -30,7 +30,7 @@ def main():
     save_path.mkdir(exist_ok=True)  # TODO remove exist_ok
 
     conversion_info = convert_models(path, save_path, args.ending)
-    print(conversion_info)
+    print("Create camera files!")
     train_data_folder = path / "trainData"
     create_camera_info(train_data_folder, save_path)
     train_folder = save_path / "train"

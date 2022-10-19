@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="EasyDataSetToBOP",  # This is the name of the package
-    version="0.0.2",  # The initial release version
+    version="0.0.4",  # The initial release version
     author="Lars Kaesberg",  # Full name of the author
     description="Convert Dataset from EasyDatasetGenerator to BOP Dataset",
     long_description=long_description,  # Long description read from the the readme file
@@ -19,5 +19,5 @@ setuptools.setup(
     python_requires='>=3.9',  # Minimum version requirement of the package
     py_modules=["easydatasettobop"],  # Name of the python package
     package_dir={'': '.'},  # Directory of the source code of the package
-    install_requires=["pymeshlab", "imageio", "pypng", "opencv-python"]  # Install other dependencies if any
+    install_requires=["pymeshlab", "imageio", "pypng", "opencv-python", "tqdm"]  # Install other dependencies if any
 )

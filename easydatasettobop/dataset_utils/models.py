@@ -1,6 +1,7 @@
 import json
 from pathlib import Path
 import pymeshlab
+from tqdm import tqdm
 
 from easydatasettobop.bop_dataset_utils import misc
 from easydatasettobop.bop_dataset_utils import inout
@@ -13,7 +14,7 @@ def convert_models(root_folder: Path, destination_folder: Path, ending: str):
     count = 1
     convert_info = {}
     model_info = {}
-    for file in root_folder.iterdir():
+    for file in tqdm(sorted(root_folder.iterdir())):
         if file.is_file() and file.suffix.lower() in [ending]:
             ms = pymeshlab.MeshSet()
             if ending == ".gltf":
