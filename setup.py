@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="EasyDataSetToBOP",  # This is the name of the package
-    version="1.0.1",  # The initial release version
+    version="1.0.2",  # The initial release version
     author="Lars Kaesberg",  # Full name of the author
     description="Convert Dataset from EasyDatasetGenerator to BOP Dataset",
     long_description=long_description,  # Long description read from the the readme file

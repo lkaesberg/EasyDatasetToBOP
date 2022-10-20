@@ -1,6 +1,6 @@
 import argparse
-from scripts.convert_easy_dataset_to_bop import convert_dataset
-from dataset_utils.visualization_dataset import visualize_dataset
+from easydatasettobop.dataset_utils.convert_easy_dataset_to_bop import convert_dataset
+from easydatasettobop.dataset_utils.visualization_dataset import visualize_dataset
 
 
 def get_arguments():
