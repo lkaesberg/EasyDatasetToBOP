@@ -7,16 +7,7 @@ from easydatasettobop.dataset_utils.models import convert_models
 from easydatasettobop.dataset_utils.train import create_train
 
 
-def get_arguments():
-    parser = argparse.ArgumentParser("Convert EasyDataset to BOP Dataset")
-
-    parser.add_argument('path', help="Path to the root of the EasyDatasetGenerator", type=str)
-    parser.add_argument('-e', '--ending', help="Generate the .ply models from specified file format", type=str, default=".gltf")
-    return parser.parse_args()
-
-
-def main():
-    args = get_arguments()
+def convert_dataset(args):
     path = Path(args.path)
     print(f"Path: {path}")
     if not path.exists():
@@ -38,7 +29,3 @@ def main():
     print("Create train files!")
     create_train(train_data_folder, train_folder, conversion_info)
     print("Finished!")
-
-
-if __name__ == '__main__':
-    main()
