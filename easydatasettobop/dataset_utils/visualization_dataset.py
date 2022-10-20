@@ -21,9 +21,6 @@ def visualize_dataset(args):
             f = open(path + "/scene_camera.json")
             camera_k = json.load(f)[str(image_number)]["cam_K"]
             camera_k = np.array(camera_k).reshape((3, 3))
-            camera_k = np.array([[787.5, 0., 712.],
-                                 [0., 787.5, 364.5],
-                                 [0., 0., 1.]])
             print(camera_k)
             first_file = False
         object_poses = poses[str(image_number)]
