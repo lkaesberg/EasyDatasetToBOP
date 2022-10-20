@@ -8,7 +8,7 @@ def get_arguments():
     parser = argparse.ArgumentParser("Convert EasyDataset to BOP Dataset")
 
     parser.add_argument('path', help="Path to the root of the EasyDatasetGenerator", type=str)
-    parser.add_argument('-v', '--visualize', help="Visualize a converted dataset. Path needs to be",
+    parser.add_argument('-v', '--visualize', help="Visualize a converted dataset. Path of the train set (i.e. */bopdataset/train/000000)",
                         action="store_true")
     parser.add_argument('-e', '--ending', help="Generate the .ply models from specified file format", type=str,
                         default=".gltf")
